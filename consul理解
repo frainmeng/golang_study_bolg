@@ -1,3 +1,5 @@
+![consul架构图](http://zhangyuyu.github.io/imgs/consul-arch.jpg "consul架构图")
+
 ## Agent
 我觉得应该叫node，类似elasticsearch中node的概念
 
