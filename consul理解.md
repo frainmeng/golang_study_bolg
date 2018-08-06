@@ -3,13 +3,13 @@
 ## Agent
 我觉得应该叫node，类似elasticsearch中node的概念
 
-## Server 
+## Client 
 node（Agent）的一个角色属性，server模式；对比es中master节点（master可以有多个，但是只能有一个leader）
 + 无状态
 + 将请求转发给server节点
 + 需要指定数据中心
 
-## Client
+## Server
 node（Agemt）的一个角色属性，client模式，无状态，只是把请求转发给server节点；对比es中的client-node
 + 维护集群状态
 + leader选举
