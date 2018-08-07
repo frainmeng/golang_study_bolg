@@ -26,3 +26,19 @@ Agemt的另一种运行模式；对比es中的master节点（即有被选中为l
 + 私有网路环境
 + 低延迟
 + 高宽带
+
+## Consensus
+leader选举
+
+## Gossip
+gossip协议，用于
++ membership（成员关系维护，成员沟通）
++ failure detection（故障检测）
++ event broadcast（时间广播）
++ 使用使用udp协议
+
+## LAN gossip
+一个LAN或者datacenter内地gossip pool
+
+## WAN gossip
+不同datacenter的server和通过公网或者WAN通讯的gossip pool
