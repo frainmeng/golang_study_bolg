@@ -1,21 +1,28 @@
-![consul架构图](http://zhangyuyu.github.io/imgs/consul-arch.jpg "consul架构图")
+![consul架构图](https://www.consul.io/assets/images/consul-arch-420ce04a.png "consul架构图")
 
 ## Agent
-我觉得应该叫node，类似elasticsearch中node的概念
+我觉得应该叫node，类似elasticsearch中node的概念，是组成consul集群的成员。即consul cluster的所有几点必须启用一个agent，agent有两种运行模式：client、server
 
 ## Client 
-node（Agent）的一个角色属性，server模式；对比es中master节点（master可以有多个，但是只能有一个leader）
+Agent的一种运行模式；对比es中client节点（不存储数据，将请求转发值master）
 + 无状态
-+ 将请求转发给server节点
-+ 需要指定数据中心
++ 将（rpc）请求转发给server节点
++ 参与LAN gossip pool
++ 资源开销小，宽带占用低
 
 ## Server
-node（Agemt）的一个角色属性，client模式，无状态，只是把请求转发给server节点；对比es中的client-node
+Agemt的另一种运行模式；对比es中的master节点（即有被选中为leader的权利）
 + 维护集群状态
-+ leader选举
++ leader选举（作为集群法人）
 + 监控检查
-+ 3个已上组成集群
++ 响应rpc请求
++ 和其他数据中心交换WAN gossip
++ 转发query到远程数据中心
 + 保持数据一致性
++ 需3个已上server组成集群
 
 ## DataCenter
-个人认为是个虚拟的概念，就是给server和client指定所属的组（datacenter），一个由server node组成的cluster也就是consul cluster
+个人认为是一个定义，就是对agent进行分组。我们一般依据以下条件第一一个数据中心：
++ 私有网路环境
++ 低延迟
++ 高宽带
