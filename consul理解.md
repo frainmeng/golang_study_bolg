@@ -42,3 +42,27 @@ gossip协议，用于
 
 ## WAN gossip
 不同datacenter的server和通过公网或者WAN通讯的gossip pool
+
+## Others
++ 一个数据中心应该有3-5个server
++ client数量无限制
+
++ 一个数据中心会维护一个LAN gossip pool，这样做的好处
+  - 对于clients无需配置server信息，可以自动发现client
+  - 故障检测的工作是分布式的，为故障检测提供了更高的可用性和更好的灵活性
+  - 可以作为消息层来进行一些重要的事件通知，比如leader选举
+ 
++ 一个数据中的所有server一起工作选举出一个leader
+  - leader负责处理所有的查询和事物
+  - 非leader的server收到的rpc请求将转发给leader进行处理
+
++ 不同数据中的server会维护一个 WAN gossip pool
+  - 多个数据中心的互相发现
+  - 可以将请求转至其他数据中心
+
++ 低耦合，故障检测，连接缓存和复用，跨数据中心请求更快更可靠
+
++ 一般情况下，不同数据中心的数据不会同步；但是有些情况下可以复制有限的数据子集
+
+
+
