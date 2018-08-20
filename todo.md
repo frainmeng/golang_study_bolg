@@ -4,3 +4,4 @@
 + traefik 网关
 + graphql
 + istio
++ hugo
