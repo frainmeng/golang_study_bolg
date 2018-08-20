@@ -3,4 +3,4 @@
 + consul 开启dns
 + traefik 网关
 + graphql
-
++ istio
